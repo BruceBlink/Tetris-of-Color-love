@@ -25,6 +25,7 @@ local SHAPES = {
     {shape = {{0,1,1},{1,1,0}}, color = {1,0,0}}      -- Z
 }
 
+-- 修改窗口大小，增加右侧预览区域的宽度
 function love.load()
     -- 设置窗口标题
     love.window.setTitle("Tetris-of-Color")
@@ -33,8 +34,8 @@ function love.load()
     local icon = love.image.newImageData("icon.png")
     love.window.setIcon(icon)
     
-    -- 设置窗口
-    love.window.setMode(COLS * CELL_SIZE + 150, ROWS * CELL_SIZE)
+    -- 设置窗口，增加右侧区域宽度
+    love.window.setMode(COLS * CELL_SIZE + 160, ROWS * CELL_SIZE)
     
     -- 初始化游戏
     initGame()
@@ -266,27 +267,55 @@ function drawPiece(piece)
     end
 end
 
+-- 修改 drawUI 函数
 function drawUI()
     -- 绘制分数
     love.graphics.setColor(1, 1, 1)
-    love.graphics.print("Score: " .. score, COLS * CELL_SIZE + 10, 10)
-    love.graphics.print("High Score: " .. highestScore, COLS * CELL_SIZE + 10, 30)
+    love.graphics.print("Score: " .. score, COLS * CELL_SIZE + 20, 10)
+    love.graphics.print("High Score: " .. highestScore, COLS * CELL_SIZE + 20, 30)
     
-    -- 绘制下一个方块预览
-    love.graphics.print("Next:", COLS * CELL_SIZE + 10, 60)
+    -- 绘制下一个方块预览标题
+    love.graphics.print("Next:", COLS * CELL_SIZE + 20, 40)
+    
+    -- 绘制下一个方块预览区域边框
+    local previewBoxX = COLS * CELL_SIZE + 20
+    local previewBoxY = 60
+    
+    love.graphics.rectangle("line", 
+        previewBoxX, 
+        previewBoxY, 
+        PREVIEW_SIZE * CELL_SIZE, 
+        PREVIEW_SIZE * CELL_SIZE
+    )
+    
+    -- 计算预览方块的居中位置
+    local previewCenterX = previewBoxX + (PREVIEW_SIZE * CELL_SIZE) / 2
+    local previewCenterY = previewBoxY + (PREVIEW_SIZE * CELL_SIZE) / 2
+    
+    -- 根据方块大小计算偏移量
+    local pieceWidth = #nextPiece.shape[1] * CELL_SIZE
+    local pieceHeight = #nextPiece.shape * CELL_SIZE
+    
+    -- 计算最终位置（将方块绘制位置转换为网格坐标）
+    local previewX = math.floor((previewCenterX - pieceWidth/2) / CELL_SIZE) + 1
+    local previewY = math.floor((previewCenterY - pieceHeight/2) / CELL_SIZE) + 1
+    
+    -- 绘制预览方块
     local previewPiece = {
         shape = nextPiece.shape,
         color = nextPiece.color,
-        x = COLS + 3,
-        y = 4
+        x = previewX,
+        y = previewY
     }
     drawPiece(previewPiece)
     
     -- 游戏结束提示
     if gameOver then
         love.graphics.setColor(1, 0, 0)
-        love.graphics.print("Game Over!\nPress R\nto restart",
-            COLS * CELL_SIZE + 10, 
-            ROWS * CELL_SIZE - 100)
+        love.graphics.print(
+            "Game Over!\nPress R to restart",
+            COLS * CELL_SIZE + 20, 
+            ROWS * CELL_SIZE - 100
+        )
     end
 end
