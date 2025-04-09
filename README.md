@@ -2,7 +2,7 @@
 
 一个使用 LÖVE2D 框架开发的彩色俄罗斯方块游戏。
 
-![游戏截图](screenshot.png)
+![游戏截图](screenshot.gif)
 
 ## 功能特点
 
@@ -32,7 +32,7 @@
 1. 克隆此仓库：
 
 ```bash
-git clone https://github.com/BruceBlink/Tetris-of-Color.git
+git clone https://github.com/BruceBlink/Tetris-of-Color-love.git
 ```
 
 2. 进入项目目录：
@@ -50,10 +50,10 @@ love .
 ## 项目结构
 
 ```text
-Tetris-of-Color/
+Tetris-of-Color-love/
 ├── main.lua          # 主游戏代码
 ├── icon.png          # 游戏图标
-├── screenshot.png    # 游戏截图
+├── screenshot.gif    # 游戏截图
 └── README.md         # 说明文档
 ```
 
@@ -88,8 +88,7 @@ Tetris-of-Color/
 
 如有问题或建议，欢迎：
 
-1. 提交 Issue
-2. 发送邮件至：[your.email@example.com](mailto:your.email@example.com)
+提交 Issue
 
 ## 更新日志
 
