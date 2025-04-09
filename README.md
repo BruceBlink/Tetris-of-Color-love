@@ -38,7 +38,7 @@ git clone https://github.com/BruceBlink/Tetris-of-Color-love.git
 2. 进入项目目录：
 
 ```bash
-cd Tetris-of-Color
+cd Tetris-of-Color-love
 ```
 
 3. 运行游戏：
