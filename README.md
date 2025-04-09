@@ -50,11 +50,19 @@ love .
 ## 项目结构
 
 ```text
-Tetris-of-Color-love/
-├── main.lua          # 主游戏代码
+Tetris-of-Color/
+├── main.lua          # 主游戏入口
+├── conf.lua          # LÖVE 配置文件
 ├── icon.png          # 游戏图标
 ├── screenshot.gif    # 游戏截图
-└── README.md         # 说明文档
+├── README.md         # 说明文档
+├── LICENSE           # MIT 开源协议
+└── modules/          # 游戏模块目录
+    ├── constants.lua # 游戏常量
+    ├── piece.lua     # 方块相关逻辑
+    ├── grid.lua      # 网格相关逻辑
+    ├── game.lua      # 游戏状态管理
+    └── ui.lua        # UI 绘制逻辑
 ```
 
 ## 评分系统
